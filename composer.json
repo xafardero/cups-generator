@@ -1,0 +1,22 @@
+{
+    "name": "xafardero/generate-cups",
+    "description": "This is a generator for spanish CUPS",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Xavier Mabras",
+            "email": "xavier.mabras@protonamil.ch"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.0.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "CupsGenerator\\": "src/"
+        }
+    }
+}
