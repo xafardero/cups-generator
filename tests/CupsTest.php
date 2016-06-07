@@ -11,6 +11,6 @@ class CupsTest extends PHPUnit_Framework_TestCase
 {
     public function testHasNormalLength()
     {
-        $this->assertEquals(strlen((new Cups)->generate()), 20);
+        $this->assertEquals(strlen((new Cups())->generate()), 20);
     }
 }
