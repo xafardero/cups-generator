@@ -3,19 +3,19 @@
 namespace CupsGenerator;
 
 /**
- * Class to generate a random cups
+ * Class to generate a random cups.
  */
 class Cups
 {
     /**
-     * Cups id
+     * Cups id.
      *
      * @param $string
      */
     private $id;
 
     /**
-     * Generate a Random cups
+     * Generate a Random cups.
      *
      * @return string
      */
@@ -24,23 +24,24 @@ class Cups
         $reeId = $this->_generateReeId();
         $distId = $this->_generateDistId();
 
-        $control = ($reeId . $distId) % 529;
+        $control = ($reeId.$distId) % 529;
         $division = $control / 23;
         $resto = $control % 23;
 
         $this->id = $this->_getCountry()
-            . $reeId
-            . $distId
-            . $this->_getControlNumbersBy($division)
-            . $this->_getControlNumbersBy($resto);
+            .$reeId
+            .$distId
+            .$this->_getControlNumbersBy($division)
+            .$this->_getControlNumbersBy($resto);
 
         return $this->id;
     }
 
     /**
-     * Genera los 4 numeros dados por la Red electrica de EspaÃ±a
+     * Genera los 4 numeros dados por la Red electrica de EspaÃ±a.
      *
      * @todo improve this for
+     *
      * @return string
      */
     private function _generateReeId()
@@ -48,16 +49,17 @@ class Cups
         $id = mt_rand(0, 9999);
 
         for ($idLength = strlen($id); $idLength < 4; $idLength++) {
-            $id = '0' . $id;
+            $id = '0'.$id;
         }
 
         return $id;
     }
 
     /**
-     * Genera los 12 numeros Id del distribuidor
+     * Genera los 12 numeros Id del distribuidor.
      *
      * @todo improve this for
+     *
      * @return string
      */
     private function _generateDistId()
@@ -65,14 +67,14 @@ class Cups
         $id = mt_rand(0, 999999999999);
 
         for ($distLength = strlen($id); $distLength < 12; $distLength++) {
-            $id = '0' . $id;
+            $id = '0'.$id;
         }
 
         return $id;
     }
 
     /**
-     * Retorna ISO pais
+     * Retorna ISO pais.
      *
      * @return string
      */
@@ -82,23 +84,23 @@ class Cups
     }
 
     /**
-     * Retorna array with control
+     * Retorna array with control.
      *
      * @return array
      */
     private function _getControlNumbers()
     {
-        return array(
-            0 => 'T',
-            1 => 'R',
-            2 => 'W',
-            3 => 'A',
-            4 => 'G',
-            5 => 'M',
-            6 => 'Y',
-            7 => 'F',
-            8 => 'P',
-            9 => 'D',
+        return [
+            0  => 'T',
+            1  => 'R',
+            2  => 'W',
+            3  => 'A',
+            4  => 'G',
+            5  => 'M',
+            6  => 'Y',
+            7  => 'F',
+            8  => 'P',
+            9  => 'D',
             10 => 'X',
             11 => 'B',
             12 => 'N',
@@ -112,13 +114,14 @@ class Cups
             20 => 'C',
             21 => 'K',
             22 => 'E',
-        );
+        ];
     }
 
     /**
-     * Retorna array with control
+     * Retorna array with control.
      *
      * @todo improve the return
+     *
      * @return string
      */
     private function _getControlNumbersBy($id)
@@ -127,6 +130,4 @@ class Cups
 
         return $controlNumber[(int) $id];
     }
-
 }
-
