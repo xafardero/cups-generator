@@ -64,10 +64,14 @@ class Cups
      */
     private function _generateDistId()
     {
-        $id = mt_rand(0, 999999999999);
-
-        for ($distLength = strlen($id); $distLength < 12; $distLength++) {
-            $id = '0'.$id;
+        if (PHP_INT_SIZE == 4) {
+            $rand = mt_rand(0, 999999999);
+            $id = str_pad($rand, 9, '0', STR_PAD_LEFT);
+            $rand = mt_rand(0, 999);
+            $id .= str_pad($rand, 3, '0', STR_PAD_LEFT);
+        } else {
+            $rand = mt_rand(0, 999999999999);
+            $id = str_pad($rand, 12, '0', STR_PAD_LEFT);
         }
 
         return $id;
