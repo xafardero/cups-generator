@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests;
+
 use CupsGenerator\Cups;
 
 /**
@@ -7,7 +9,7 @@ use CupsGenerator\Cups;
  *
  * @link https://es.wikipedia.org/wiki/C%C3%B3digo_Unificado_de_Punto_de_Suministro
  */
-class CupsTest extends PHPUnit_Framework_TestCase
+class CupsTest extends \PHPUnit_Framework_TestCase
 {
     public function testHasNormalLength()
     {
