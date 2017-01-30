@@ -18,5 +18,10 @@
         "psr-4": {
             "CupsGenerator\\": "src/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
     }
 }
