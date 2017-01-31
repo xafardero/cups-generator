@@ -21,18 +21,18 @@ class Cups
      */
     public function generate()
     {
-        $reeId = $this->_generateReeId();
-        $distId = $this->_generateDistId();
+        $reeId = $this->generateReeId();
+        $distId = $this->generateDistId();
 
         $control = ($reeId.$distId) % 529;
         $division = $control / 23;
         $resto = $control % 23;
 
-        $this->id = $this->_getCountry()
-            .$reeId
-            .$distId
-            .$this->_getControlNumbersBy($division)
-            .$this->_getControlNumbersBy($resto);
+        $this->id = $this->getCountry()
+            . $reeId
+            . $distId
+            . $this->getControlNumbersBy($division)
+            . $this->getControlNumbersBy($resto);
 
         return $this->id;
     }
@@ -44,12 +44,12 @@ class Cups
      *
      * @return string
      */
-    private function _generateReeId()
+    private function generateReeId()
     {
         $id = mt_rand(0, 9999);
 
         for ($idLength = strlen($id); $idLength < 4; $idLength++) {
-            $id = '0'.$id;
+            $id = '0' . $id;
         }
 
         return $id;
@@ -62,16 +62,16 @@ class Cups
      *
      * @return string
      */
-    private function _generateDistId()
+    private function generateDistId()
     {
         if (PHP_INT_SIZE == 4) {
-            $rand = mt_rand(0, 999999999);
-            $id = str_pad($rand, 9, '0', STR_PAD_LEFT);
-            $rand = mt_rand(0, 999);
-            $id .= str_pad($rand, 3, '0', STR_PAD_LEFT);
+            $random = mt_rand(0, 999999999);
+            $id = str_pad($random, 9, '0', STR_PAD_LEFT);
+            $random = mt_rand(0, 999);
+            $id .= str_pad($random, 3, '0', STR_PAD_LEFT);
         } else {
-            $rand = mt_rand(0, 999999999999);
-            $id = str_pad($rand, 12, '0', STR_PAD_LEFT);
+            $random = mt_rand(0, 999999999999);
+            $id = str_pad($random, 12, '0', STR_PAD_LEFT);
         }
 
         return $id;
@@ -82,7 +82,7 @@ class Cups
      *
      * @return string
      */
-    private function _getCountry()
+    private function getCountry()
     {
         return 'ES';
     }
@@ -92,7 +92,7 @@ class Cups
      *
      * @return array
      */
-    private function _getControlNumbers()
+    private function getControlNumbers()
     {
         return [
             0  => 'T',
@@ -128,9 +128,9 @@ class Cups
      *
      * @return string
      */
-    private function _getControlNumbersBy($id)
+    private function getControlNumbersBy($id)
     {
-        $controlNumber = $this->_getControlNumbers();
+        $controlNumber = $this->getControlNumbers();
 
         return $controlNumber[(int) $id];
     }
