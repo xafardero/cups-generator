@@ -46,13 +46,9 @@ class Cups
      */
     private function generateReeId()
     {
-        $id = mt_rand(0, 9999);
+        $random = mt_rand(0, 9999);
 
-        for ($idLength = strlen($id); $idLength < 4; $idLength++) {
-            $id = '0' . $id;
-        }
-
-        return $id;
+        return str_pad($random, 4, STR_PAD_LEFT);
     }
 
     /**
@@ -132,6 +128,6 @@ class Cups
     {
         $controlNumber = $this->getControlNumbers();
 
-        return $controlNumber[(int) $id];
+        return $controlNumber[$id];
     }
 }
