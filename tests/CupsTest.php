@@ -3,6 +3,7 @@
 namespace Tests;
 
 use CupsGenerator\Cups;
+use CupsValidate\Cups as CupsValidator;
 
 /**
  * Cups generator test.
@@ -13,6 +14,17 @@ class CupsTest extends \PHPUnit_Framework_TestCase
 {
     public function testHasNormalLength()
     {
-        $this->assertEquals(strlen((new Cups())->generate()), 20);
+        $cupsList = $this->cupsList();
+
+        array_walk($cupsList, function($cups) {
+            $this->assertTrue(CupsValidator::validate($cups));
+        });
     }
+
+     private function cupsList()
+     {
+        return array_map(function() {
+            return (new Cups())->generate();
+        }, range(1,50));
+     }
 }
