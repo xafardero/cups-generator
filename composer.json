@@ -12,7 +12,8 @@
         "php": ">=5.4.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "4.0.*"
+        "phpunit/phpunit": "4.0.*",
+        "holaluz/validate-cups": "dev-master"
     },
     "autoload": {
         "psr-4": {
