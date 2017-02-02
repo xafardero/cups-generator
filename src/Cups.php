@@ -38,9 +38,7 @@ class Cups
     }
 
     /**
-     * Genera los 4 numeros dados por la Red electrica de EspaÃ±a.
-     *
-     * @todo improve this for
+     * Genera los 4 numeros dados por la Red electrica de España
      *
      * @return string
      */
@@ -54,23 +52,27 @@ class Cups
     /**
      * Genera los 12 numeros Id del distribuidor.
      *
-     * @todo improve this for
-     *
      * @return string
      */
     private function generateDistId()
     {
         if (PHP_INT_SIZE == 4) {
-            $random = mt_rand(0, 999999999);
-            $id = str_pad($random, 9, '0', STR_PAD_LEFT);
-            $random = mt_rand(0, 999);
-            $id .= str_pad($random, 3, '0', STR_PAD_LEFT);
-        } else {
-            $random = mt_rand(0, 999999999999);
-            $id = str_pad($random, 12, '0', STR_PAD_LEFT);
+            return $this->generateRandomNumberWithRange(9)
+                . $this->generateRandomNumberWithRange(3);
         }
 
-        return $id;
+        return $this->generateRandomNumberWithRange(12);
+    }
+
+    /**
+     * @param $range
+     * @return string
+     */
+    private function generateRandomNumberWithRange($range)
+    {
+        $randomNumber = mt_rand(0, str_repeat("9", $range));
+
+        return str_pad($randomNumber, $range, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -118,9 +120,7 @@ class Cups
     }
 
     /**
-     * Retorna array with control.
-     *
-     * @todo improve the return
+     * Return array with control.
      *
      * @return string
      */
