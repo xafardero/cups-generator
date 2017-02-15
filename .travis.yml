@@ -9,5 +9,11 @@ php:
 before_script:
     - composer self-update
     - composer install --prefer-source --no-interaction --dev
+    - wget https://scrutinizer-ci.com/ocular.phar
 
-script: phpunit
+script:
+    - vendor/bin/phpunit
+    - vendor/bin/phpunit --disallow-test-output --coverage-clover ./build/clover.xml
+
+after_script:
+    - php ocular.phar code-coverage:upload --format=php-clover build/clover.xml
