@@ -8,3 +8,11 @@ checks:
 tools:
     external_code_coverage: true
     sensiolabs_security_checker: true
+build:
+    tests:
+        override:
+            -
+                command: 'phpunit --coverage-clover=some-file'
+                coverage:
+                    file: 'some-file'
+                    format: 'clover'
