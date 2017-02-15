@@ -6,7 +6,6 @@ checks:
     php:
         code_rating: true
 tools:
-    external_code_coverage: true
     sensiolabs_security_checker: true
 build:
     tests:
