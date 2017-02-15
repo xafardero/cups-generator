@@ -16,15 +16,15 @@ class CupsTest extends \PHPUnit_Framework_TestCase
     {
         $cupsList = $this->cupsList();
 
-        array_walk($cupsList, function($cups) {
+        array_walk($cupsList, function ($cups) {
             $this->assertTrue(CupsValidator::validate($cups));
         });
     }
 
-     private function cupsList()
-     {
-        return array_map(function() {
+    private function cupsList()
+    {
+        return array_map(function () {
             return (new Cups())->generate();
-        }, range(1,50));
-     }
+        }, range(1, 50));
+    }
 }

@@ -29,16 +29,16 @@ class Cups
         $resto = $control % 23;
 
         $this->id = $this->getCountry()
-            . $reeId
-            . $distId
-            . $this->getControlNumbersBy($division)
-            . $this->getControlNumbersBy($resto);
+            .$reeId
+            .$distId
+            .$this->getControlNumbersBy($division)
+            .$this->getControlNumbersBy($resto);
 
         return $this->id;
     }
 
     /**
-     * Genera los 4 numeros dados por la Red electrica de España
+     * Genera los 4 numeros dados por la Red electrica de España.
      *
      * @return string
      */
@@ -58,7 +58,7 @@ class Cups
     {
         if (PHP_INT_SIZE == 4) {
             return $this->generateRandomNumberWithRange(9)
-                . $this->generateRandomNumberWithRange(3);
+                .$this->generateRandomNumberWithRange(3);
         }
 
         return $this->generateRandomNumberWithRange(12);
@@ -66,11 +66,12 @@ class Cups
 
     /**
      * @param $range
+     *
      * @return string
      */
     private function generateRandomNumberWithRange($range)
     {
-        $randomNumber = mt_rand(0, str_repeat("9", $range));
+        $randomNumber = mt_rand(0, str_repeat('9', $range));
 
         return str_pad($randomNumber, $range, '0', STR_PAD_LEFT);
     }
