@@ -26,19 +26,19 @@ class Cups
 
         $control = ($reeId.$distId) % 529;
         $division = $control / 23;
-        $resto = $control % 23;
+        $mod = $control % 23;
 
         $this->id = $this->getCountry()
             .$reeId
             .$distId
             .$this->getControlNumbersBy($division)
-            .$this->getControlNumbersBy($resto);
+            .$this->getControlNumbersBy($mod);
 
         return $this->id;
     }
 
     /**
-     * Genera los 4 numeros dados por la Red electrica de España.
+     * Generate the 4 numbers given by the Red electrica from España.
      *
      * @return string
      */
@@ -77,7 +77,7 @@ class Cups
     }
 
     /**
-     * Retorna ISO pais.
+     * Returns the country code.
      *
      * @return string
      */
@@ -87,41 +87,43 @@ class Cups
     }
 
     /**
-     * Retorna array with control.
+     * Returns an array with control Digit.
      *
      * @return array
      */
     private function getControlNumbers()
     {
         return [
-            0  => 'T',
-            1  => 'R',
-            2  => 'W',
-            3  => 'A',
-            4  => 'G',
-            5  => 'M',
-            6  => 'Y',
-            7  => 'F',
-            8  => 'P',
-            9  => 'D',
-            10 => 'X',
-            11 => 'B',
-            12 => 'N',
-            13 => 'J',
-            14 => 'Z',
-            15 => 'S',
-            16 => 'Q',
-            17 => 'V',
-            18 => 'H',
-            19 => 'L',
-            20 => 'C',
-            21 => 'K',
-            22 => 'E',
+            'T',
+            'R',
+            'W',
+            'A',
+            'G',
+            'M',
+            'Y',
+            'F',
+            'P',
+            'D',
+            'X',
+            'B',
+            'N',
+            'J',
+            'Z',
+            'S',
+            'Q',
+            'V',
+            'H',
+            'L',
+            'C',
+            'K',
+            'E',
         ];
     }
 
     /**
      * Return array with control.
+     *
+     * @param $id
      *
      * @return string
      */
