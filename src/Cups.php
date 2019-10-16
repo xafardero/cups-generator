@@ -2,11 +2,16 @@
 
 namespace CupsGenerator;
 
+use Exception;
+
 /**
  * Class to generate a random cups.
  */
 class Cups
 {
+    const TYPE_GAS = 'gas';
+    const TYPE_ENERGY = 'energy';
+
     /**
      * Cups id.
      *
@@ -17,11 +22,12 @@ class Cups
     /**
      * Generate a Random cups.
      *
+     * @param string $type
      * @return string
      */
-    public function generate()
+    public function generate(string $type = Cups::TYPE_ENERGY)
     {
-        $reeId = $this->generateReeId();
+        $reeId = $this->generateReeId($type);
         $distId = $this->generateDistId();
 
         $control = ($reeId.$distId) % 529;
@@ -40,13 +46,24 @@ class Cups
     /**
      * Generate the 4 numbers given by the Red electrica from España.
      *
+     * @param  string $type
      * @return string
      */
-    private function generateReeId()
+    private function generateReeId(string $type)
     {
-        $random = mt_rand(0, 9999);
+        switch ($type) {
+            case static::TYPE_ENERGY:
+                $start = '00';
+                break;
+            case static::TYPE_GAS:
+                $start = '02';
+                break;
+            default:
+                throw new Exception('Invalid CUPS type: ' . $type);
+        }
+        $random = mt_rand(0, 99);
 
-        return str_pad($random, 4, STR_PAD_LEFT);
+        return $start . str_pad($random, 2, STR_PAD_LEFT);
     }
 
     /**
