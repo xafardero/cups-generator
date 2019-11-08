@@ -19,11 +19,5 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
 
-    - name: Setup PHP
-      uses: shivammathur/setup-php@master
-      with:
-        php-version: '7.3'
-        extension-csv: mbstring, xdebug #optional, setup extensions
-        ini-values-csv: post_max_size=256M, short_open_tag=On #optional, setup php.ini configuration
-        coverage: xdebug #optional, setup coverage driver
-        pecl: true #optional, setup PECL
+    - name: Run Tests
+      run: php bin/phpunit --coverage-text
